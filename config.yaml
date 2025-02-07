@@ -2,13 +2,17 @@
 # Values for this lesson.
 #------------------------------------------------------------
 
-# Which carpentry is this (swc, dc, lc, or cp)?
+# Which carpentry is this (swc, dc, lc, or cp)? < REPLACED with UNIMELB institutes >
+# uom: University of Melbourne
+# mb: Melbourne Bioinformatics
+# mig: Melbourne Integrative Genomics
+# wehi: Walter and Eliza Hall Institute
 # swc: Software Carpentry
 # dc: Data Carpentry
 # lc: Library Carpentry
 # cp: Carpentries (to use for instructor training for instance)
 # incubator: The Carpentries Incubator
-carpentry: 'swc'
+carpentry: 'wehi'
 
 # Overall title for pages.
 title: 'Version Control with Git'
@@ -89,6 +93,10 @@ profiles:
 # sandpaper and varnish versions) should live
 
 
-url: 'https://swcarpentry.github.io/git-novice'
+#url: 'https://swcarpentry.github.io/git-novice'
 analytics: carpentries
 lang: en
+
+# This is the MB varnish, which is a custom version of the Carpentries varnish
+varnish: 'melbournebioinformatics/uom-varnish@main'
+url: 'melbournebioinformatics.github.io/uom-varnish'
