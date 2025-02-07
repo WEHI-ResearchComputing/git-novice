@@ -381,7 +381,7 @@
       </div>
       <hr></nav><main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>Conflicts</h1>
-        <p>Last updated on 2024-08-06 |
+        <p>Last updated on 2025-02-07 |
 
         <a href="https://github.com/swcarpentry/git-novice/edit/main/episodes/09-conflict.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 
@@ -435,11 +435,12 @@ partners’ copies of our <code>recipes</code> repository:</p>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="output" tabindex="0"><code><span><span class="co"># Ingredients</span></span>
-<span><span class="op">-</span> <span class="va">avocado</span></span>
-<span><span class="op">-</span> <span class="va">lime</span></span>
-<span><span class="op">-</span> <span class="va">salt</span></span>
-<span><span class="co"># Instructions</span></span></code></pre>
+<pre class="output" tabindex="0"><code># Guacamole
+## Ingredients
+* avocado
+* lime
+* salt
+## Instructions</code></pre>
 </div>
 <p>Let’s add a line to the collaborator’s copy only:</p>
 <div class="codewrapper sourceCode" id="cb3">
@@ -451,12 +452,13 @@ partners’ copies of our <code>recipes</code> repository:</p>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="output" tabindex="0"><code># Ingredients
-- avocado
-- lime
-- salt
-# Instructions
-- put one avocado into a bowl.</code></pre>
+<pre class="output" tabindex="0"><code># Guacamole
+## Ingredients
+* avocado
+* lime
+* salt
+## Instructions
+* put one avocado into a bowl.</code></pre>
 </div>
 <p>and then push the change to GitHub:</p>
 <div class="codewrapper sourceCode" id="cb5">
@@ -500,12 +502,13 @@ To https://github.com/alflin/recipes.git
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="output" tabindex="0"><code># Ingredients
-- avocado
-- lime
-- salt
-# Instructions
-- peel the avocados</code></pre>
+<pre class="output" tabindex="0"><code># Guacamole
+## Ingredients
+* avocado
+* lime
+* salt
+## Instructions
+* peel the avocados</code></pre>
 </div>
 <p>We can commit the change locally:</p>
 <div class="codewrapper sourceCode" id="cb11">
@@ -567,9 +570,9 @@ Automatic merge failed; fix conflicts and then commit the result.</code></pre>
 <i class="callout-icon" data-feather="bell"></i>
 </div>
 <div id="you-may-need-to-tell-git-what-to-do" class="callout-inner">
-<h3 class="callout-title">You may need to tell git what to do</h3>
+<h3 class="callout-title">You may need to tell Git what to do</h3>
 <div class="callout-content">
-<p>If you see the below in your output, git is asking what it should
+<p>If you see the below in your output, Git is asking what it should
 do.</p>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -587,7 +590,7 @@ hint: preference for all repositories. You can also pass --rebase, --no-rebase,
 hint: or --ff-only on the command line to override the configured default per
 hint: invocation.</code></pre>
 </div>
-<p>In newer versions of git it gives you the option of specifying
+<p>In newer versions of Git it gives you the option of specifying
 different behaviours when a pull would merge divergent branches. In our
 case we want ‘the default strategy’. To use this strategy run the
 following command to select it as the default thing git should do.</p>
@@ -620,15 +623,16 @@ affected file:</p>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="output" tabindex="0"><code># Ingredients
-- avocado
-- lime
-- salt
-# Instructions
+<pre class="output" tabindex="0"><code># Guacamole
+## Ingredients
+* avocado
+* lime
+* salt
+## Instructions
 &lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD
-- peel the avocados
+* peel the avocados
 =======
-- put one avocado into a bowl.
+* put one avocado into a bowl.
 &gt;&gt;&gt;&gt;&gt;&gt;&gt; dabb4c8c450e8475aee9b14b4383acc99f42af1d</code></pre>
 </div>
 <p>Our change is preceded by
@@ -651,12 +655,13 @@ Let’s replace both so that the file looks like this:</p>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="output" tabindex="0"><code># Ingredients
-- avocado
-- lime
-- salt
-# Instructions
-- peel the avocados and put them into a bowl.</code></pre>
+<pre class="output" tabindex="0"><code># Guacamole
+## Ingredients
+* avocado
+* lime
+* salt
+## Instructions
+* peel the avocados and put them into a bowl.</code></pre>
 </div>
 <p>To finish merging, we add <code>guacamole.md</code> to the changes
 being made by the merge and then commit:</p>
@@ -740,12 +745,13 @@ Fast-forward
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="output" tabindex="0"><code># Ingredients
-- avocado
-- lime
-- salt
-# Instructions
-- peel the avocados and put them into a bowl.</code></pre>
+<pre class="output" tabindex="0"><code># Guacamole
+## Ingredients
+* avocado
+* lime
+* salt
+## Instructions
+* peel the avocados and put them into a bowl.</code></pre>
 </div>
 <p>We don’t need to merge again because Git knows someone has already
 done that.</p>
@@ -807,7 +813,7 @@ non-textual file that is stored in version control?</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
 <p>Let’s try it. Suppose Alfredo takes a picture of its guacamole and
 calls it <code>guacamole.jpg</code>.</p>
@@ -1025,7 +1031,7 @@ started.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
   <h4 class="accordion-header" id="headingSolution2"> Show me the solution </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
 <div class="accordion-body">
 <table class="table"><colgroup><col width="6%"><col width="34%"><col width="59%"></colgroup><thead><tr class="header"><th>order</th>
 <th>action . . . . . .</th>
@@ -1106,7 +1112,7 @@ resolved.</li>
         <p>Materials licensed under <a href="LICENSE.html">CC-BY 4.0</a> by the authors</p>
 
         <p>Template licensed under <a href="https://creativecommons.org/licenses/by-sa/4.0/" class="external-link">CC-BY 4.0</a> by <a href="https://carpentries.org/" class="external-link">The Carpentries</a></p>
-        <p>Built with <a href="https://github.com/carpentries/sandpaper/tree/0.16.10" class="external-link">sandpaper (0.16.10)</a>, <a href="https://github.com/carpentries/pegboard/tree/0.7.7" class="external-link">pegboard (0.7.7)</a>, and <a href="https://github.com/carpentries/varnish/tree/1.0.5" class="external-link">varnish (1.0.5)</a></p>
+        <p>Built with <a href="https://github.com/carpentries/sandpaper/tree/0.16.11" class="external-link">sandpaper (0.16.11)</a>, <a href="https://github.com/carpentries/pegboard/tree/0.7.7" class="external-link">pegboard (0.7.7)</a>, and <a href="https://github.com/carpentries/varnish/tree/1.0.5" class="external-link">varnish (1.0.5)</a></p>
 			</div>
 		</footer></div> <!-- / div.container -->
 	<div id="to-top">
@@ -1128,8 +1134,8 @@ resolved.</li>
   "url": "https://swcarpentry.github.io/git-novice/instructor/09-conflict.html",
   "identifier": "https://swcarpentry.github.io/git-novice/instructor/09-conflict.html",
   "dateCreated": "2014-12-04",
-  "dateModified": "2024-08-06",
-  "datePublished": "2024-12-31"
+  "dateModified": "2025-02-07",
+  "datePublished": "2025-02-07"
 }
 
   </script><script>
