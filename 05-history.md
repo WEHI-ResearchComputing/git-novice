@@ -35,11 +35,12 @@ $ cat guacamole.md
 ```
 
 ```output
-# Ingredients
-- avocado
-- lime
-- salt
-# Instructions
+# Guacamole
+## Ingredients
+* avocado
+* lime
+* salt
+## Instructions
 An ill-considered change
 ```
 
@@ -54,18 +55,14 @@ diff --git a/guacamole.md b/guacamole.md
 index b36abfd..0848c8d 100644
 --- a/guacamole.md
 +++ b/guacamole.md
-@@ -3,3 +3,4 @@
- - lime
- - salt
- # Instructions
+@@ -4,3 +4,4 @@
+ * lime
+ * salt
+ ## Instructions
 +An ill-considered change
 ```
 
-which is the same as what you would get if you leave out `HEAD` (try it).  The
-real goodness in all this is when you can refer to previous commits.  We do
-that by adding `~1`
-(where "~" is "tilde", pronounced [**til**\-d*uh*])
-to refer to the commit one before `HEAD`.
+Note that `HEAD` is the default option for `git diff`, so omitting it will not change the command's output at all (give it a try). However, the real power of `git diff` lies in its ability to compare with previous commits. For example, by adding `~1` (where "~" is "tilde", pronounced [**til**\-d*uh*]), we can look at the commit before `HEAD`.
 
 ```bash
 $ git diff HEAD~1 guacamole.md
@@ -83,12 +80,13 @@ diff --git a/guacamole.md b/guacamole.md
 index df0654a..b36abfd 100644
 --- a/guacamole.md
 +++ b/guacamole.md
-@@ -1,2 +1,5 @@
- # Ingredients
-+- avocado
-+- lime
-+- salt
- # Instructions
+@@ -1,3 +1,6 @@
+ # Guacamole
+ ## Ingredients
++* avocado
++* lime
++* salt
+ ## Instructions
 ```
 
 We could also use `git show` which shows us what changes we made at an older commit as
@@ -111,9 +109,10 @@ new file mode 100644
 index 0000000..df0654a
 --- /dev/null
 +++ b/guacamole.md
-@@ -0,0 +1,2 @@
-+# Ingredients
-+# Instructions
+@@ -0,0 +1,3 @@
++# Guacamole
++## Ingredients
++## Instructions
 ```
 
 In this way,
@@ -144,12 +143,13 @@ diff --git a/guacamole.md b/guacamole.md
 index df0654a..93a3e13 100644
 --- a/guacamole.md
 +++ b/guacamole.md
-@@ -1,2 +1,5 @@
- # Ingredients
-+- avocado
-+- lime
-+- salt
- # Instructions
+@@ -1,3 +1,7 @@
+ # Guacamole
+ ## Ingredients
++* avocado
++* lime
++* salt
+ ## Instructions
 +An ill-considered change
 ```
 
@@ -166,12 +166,13 @@ diff --git a/guacamole.md b/guacamole.md
 index df0654a..93a3e13 100644
 --- a/guacamole.md
 +++ b/guacamole.md
-@@ -1,2 +1,5 @@
- # Ingredients
-+- avocado
-+- lime
-+- salt
- # Instructions
+@@ -1,3 +1,7 @@
+ # Guacamole
+ ## Ingredients
++* avocado
++* lime
++* salt
+ ## Instructions
 +An ill-considered change
 ```
 
@@ -193,7 +194,6 @@ On branch main
 Changes not staged for commit:
   (use "git add <file>..." to update what will be committed)
   (use "git restore <file>..." to discard changes in working directory)
-
     modified:   guacamole.md
 
 no changes added to commit (use "git add" and/or "git commit -a")
@@ -203,16 +203,17 @@ We can put things back the way they were
 by using `git restore`:
 
 ```bash
-$ git checkout HEAD guacamole.md
+$ git restore guacamole.md
 $ cat guacamole.md
 ```
 
 ```output
-# Ingredients
-- avocado
-- lime
-- salt
-# Instructions
+# Guacamole
+## Ingredients
+* avocado
+* lime
+* salt
+## Instructions
 ```
 
 As you might guess from its name,
@@ -224,7 +225,7 @@ If we want to go back even further,
 we can use a commit identifier instead, using `-s` option:
 
 ```bash
-$ git checkout f22b25e guacamole.md
+$ git restore -s f22b25e guacamole.md
 ```
 
 ```bash
@@ -232,8 +233,9 @@ $ cat guacamole.md
 ```
 
 ```output
-# Ingredients
-# Instructions
+# Guacamole
+## Ingredients
+## Instructions
 ```
 
 ```bash
@@ -245,58 +247,29 @@ On branch main
 Changes not staged for commit:
   (use "git add <file>..." to update what will be committed)
   (use "git restore <file>..." to discard changes in working directory)
-        modified:   mars.txt
-
     modified:   guacamole.md
 
+no changes added to commit (use "git add" and/or "git commit -a")
+
 ```
-Notice that the changes are currently in the staging area. 
-Again, we can put things back the way they were by using `git restore`:
+
+Notice that the changes are not currently in the staging area, and have not been committed. 
+If we wished, we can put things back the way they were at the last commit by using `git restore` to overwrite
+the working copy with the last committed version:
 
 ```bash
-$ git checkout HEAD guacamole.md
+$ git restore guacamole.md
+$ cat guacamole.md
 ```
 
-:::::::::::::::::::::::::::::::::::::::::  callout
-
-## Don't Lose Your HEAD
-
-Above we used
-
-```bash
-$ git checkout f22b25e guacamole.md
+```output
+# Guacamole
+## Ingredients
+* avocado
+* lime
+* salt
+## Instructions
 ```
-
-to revert `guacamole.md` to its state after the commit `f22b25e`. But be careful!
-The command `checkout` has other important functionalities and Git will misunderstand
-your intentions if you are not accurate with the typing. For example,
-if you forget `guacamole.md` in the previous command.
-
-```bash
-$ git checkout f22b25e
-```
-
-```error
-Note: checking out 'f22b25e'.
-
-You are in 'detached HEAD' state. You can look around, make experimental
-changes and commit them, and you can discard any commits you make in this
-state without impacting any branches by performing another checkout.
-
-If you want to create a new branch to retain commits you create, you may
-do so (now or later) by using -b with the checkout command again. Example:
-
- git checkout -b <new-branch-name>
-
-HEAD is now at f22b25e Create a template for recipe
-```
-
-The "detached HEAD" is like "look, but don't touch" here,
-so you shouldn't make any changes in this state.
-After investigating your repo's past state, reattach your `HEAD` with `git checkout main`.
-
-
-::::::::::::::::::::::::::::::::::::::::::::::::::
 
 It's important to remember that
 we must use the commit number that identifies the state of the repository
@@ -313,26 +286,6 @@ here's how Git works in cartoon form:
 
 ![https://figshare.com/articles/How_Git_works_a_cartoon/1328266](fig/git_staging.svg){alt='A diagram showing the entire git workflow: local changes are staged using git add, applied to the local repository using git commit, and can be restored from the repository using git checkout'}
 
-:::::::::::::::::::::::::::::::::::::::::  callout
-
-## Simplifying the Common Case
-
-If you read the output of `git status` carefully,
-you'll see that it includes this hint:
-
-```bash
-(use "git checkout -- <file>..." to discard changes in working directory)
-```
-
-As it says,
-`git checkout` without a version identifier restores files to the state saved in `HEAD`.
-The double dash `--` is needed to separate the names of the files being recovered
-from the command itself:
-without it,
-Git would try to use the name of the file as the commit identifier.
-
-
-::::::::::::::::::::::::::::::::::::::::::::::::::
 
 The fact that files can be reverted one by one
 tends to change the way people organize their work.
@@ -414,7 +367,7 @@ what is the missing command?
 
 4. Type in the new commit message.
 
-5. Save and close
+5. Save and close.
 
 :::::::::::::::  solution
 
@@ -440,27 +393,27 @@ What is the output of the last command in
 
 ```bash
 $ cd recipes
-$ echo "I like tomatos, therefore I like ketchup" > ketchup.md
+$ echo "I like tomatoes, therefore I like ketchup" > ketchup.md
 $ git add ketchup.md
-$ echo "ketchup enchances pasta dishes" > ketchup.md
-$ git commit -m "my opinions about the red sauce"
-$ git checkout HEAD ketchup.md
+$ echo "ketchup enhances pasta dishes" >> ketchup.md
+$ git commit -m "My opinions about the red sauce"
+$ git restore ketchup.md
 $ cat ketchup.md # this will print the content of ketchup.md on screen
 ```
 
 1. ```output
-  ketchup enchances pasta dishes
-  ```
+   ketchup enhances pasta dishes
+   ```
 2. ```output
-  I like tomatos, therefore I like ketchup
-  ```
+   I like tomatoes, therefore I like ketchup
+   ```
 3. ```output
-  I like tomatos, therefore I like ketchup
-  ketchup enchances pasta dishes
-  ```
+   I like tomatoes, therefore I like ketchup
+   ketchup enhances pasta dishes
+   ```
 4. ```output
-  Error because you have changed ketchup.md without committing the changes
-  ```
+   Error because you have changed ketchup.md without committing the changes
+   ```
 
 :::::::::::::::  solution
 
@@ -469,21 +422,19 @@ $ cat ketchup.md # this will print the content of ketchup.md on screen
 The answer is 2.
 
 The changes to the file from the second `echo` command are only applied to the working copy,
-The command `git add ketchup.md` places the current version of `ketchup.md` into the staging area.
 not the version in the staging area.
+The command `git add ketchup.md` places the current version of `ketchup.md` into the staging area.
 
-So, when `git commit -m "my opinions about the red sauce"` is executed,
+So, when `git commit -m "My opinions about the red sauce"` is executed,
 the version of `ketchup.md` committed to the repository is the one from the staging area and
 has only one line.
 
-At this time, the working copy still has the second line (and
-
-`git status` will show that the file is modified). However, `git checkout HEAD ketchup.md`
+At this time, the working copy still has the second line (and `git status` will show that the file is modified). However, `git restore ketchup.md`
 replaces the working copy with the most recently committed version of `ketchup.md`.
 So, `cat ketchup.md` will output
 
 ```output
-I like tomatos, therefore I like ketchup
+I like tomatoes, therefore I like ketchup
 ```
 
 :::::::::::::::::::::::::
@@ -511,7 +462,7 @@ and what does happen?
 `git restore` can be used to restore a previous commit when unstaged changes have
 been made, but will it also work for changes that have been staged but not committed?
 Make a change to `guacamole.md`, add that change using `git add`,
-then use `git checkout` to see if you can remove your change.
+then use `git restore` to see if you can remove your change.
 
 :::::::::::::::  solution
 
@@ -523,8 +474,7 @@ Let's look at the output of `git status`:
 ```output
 On branch main
 Changes to be committed:
-  (use "git reset HEAD <file>..." to unstage)
-
+  (use "git restore --staged <file>..." to unstage)
         modified:   guacamole.md
 
 ```
@@ -533,18 +483,14 @@ Note that if you don't have the same output
 you may either have forgotten to change the file,
 or you have added it *and* committed it.
 
-Using the command `git checkout -- guacamole.md` now does not give an error,
+Using the command `git restore guacamole.md` now does not give an error,
 but it does not restore the file either.
 Git helpfully tells us that we need to use `git restore --staged` first
 to unstage the file:
 
 ```bash
-$ git reset HEAD guacamole.md
+$ git restore --staged guacamole.md
 ```
-
-```output
-Unstaged changes after reset:
-M	guacamole.md
 
 
 Now, `git status` gives us:
@@ -558,7 +504,6 @@ On branch main
 Changes not staged for commit:
   (use "git add <file>..." to update what will be committed)
   (use "git git restore <file>..." to discard changes in working directory)
-
         modified:   guacamole.md
 
 no changes added to commit (use "git add" and/or "git commit -a")
@@ -568,7 +513,7 @@ This means we can now use `git restore` to restore the file
 to the previous commit:
 
 ```bash
-$ git checkout -- guacamole.md
+$ git restore guacamole.md
 $ git status
 ```
 

@@ -27,11 +27,10 @@ You should be in the `recipes` directory.
 $ cd ~/Desktop/recipes
 ```
 
-Let's create a file called `guacamole.md` that contains the basic structure to
-have a recipe.
+Let's create a file called `guacamole.md` that contains the basic structure of a recipe.
 We'll use `nano` to edit the file;
 you can use whatever editor you like.
-In particular, this does not have to be the `core.editor` you set globally earlier. But remember, the bash command to create or edit a new file will depend on the editor you choose (it might not be `nano`). For a refresher on text editors, check out ["Which Editor?"](https://swcarpentry.github.io/shell-novice/03-create.html#which-editor) in [The Unix Shell](https://swcarpentry.github.io/shell-novice/) lesson.
+In particular, this does not have to be the `core.editor` you set globally earlier. But remember, the steps to create or edit a new file will depend on the editor you choose (it might not be nano). For a refresher on text editors, check out ["Which Editor?"](https://swcarpentry.github.io/shell-novice/03-create.html#which-editor) in [The Unix Shell](https://swcarpentry.github.io/shell-novice/) lesson.
 
 ```bash
 $ nano guacamole.md
@@ -40,11 +39,12 @@ $ nano guacamole.md
 Type the text below into the `guacamole.md` file:
 
 ```output
-# Ingredients
-# Instructions
+# Guacamole
+## Ingredients
+## Instructions
 ```
 
-Let's first verify that the file was properly created by running the list command (`ls`):
+Save the file and exit your editor. Next, let’s verify that the file was properly created by running the list command (`ls`):
 
 ```bash
 $ ls
@@ -54,15 +54,16 @@ $ ls
 guacamole.md
 ```
 
-`guacamole.md` contains a single line, which we can see by running:
+`guacamole.md` contains three lines, which we can see by running:
 
 ```bash
 $ cat guacamole.md
 ```
 
 ```output
-# Ingredients
-# Instructions
+# Guacamole
+## Ingredients
+## Instructions
 ```
 
 If we check the status of our project again,
@@ -201,11 +202,12 @@ $ cat guacamole.md
 ```
 
 ```output
-# Ingredients
-- avocado
-- lemon
-- salt
-# Instructions
+# Guacamole
+## Ingredients
+* avocado
+* lemon
+* salt
+## Instructions
 ```
 
 When we run `git status` now,
@@ -219,7 +221,7 @@ $ git status
 On branch main
 Changes not staged for commit:
   (use "git add <file>..." to update what will be committed)
-  (use "git checkout -- <file>..." to discard changes in working directory)
+  (use "git restore <file>..." to discard changes in working directory)
 
 	modified:   guacamole.md
 
@@ -246,12 +248,13 @@ diff --git a/guacamole.md b/guacamole.md
 index df0654a..315bf3a 100644
 --- a/guacamole.md
 +++ b/guacamole.md
-@@ -1,2 +1,5 @@
- # Ingredients
-+- avocado
-+- lemon
-+- salt
- # Instructions
+@@ -1,3 +1,6 @@
+ # Guacamole
+ ## Ingredients
++* avocado
++* lemon
++* salt
+ ## Instructions
 ```
 
 The output is cryptic because
@@ -273,15 +276,14 @@ If we break it down into pieces:
 After reviewing our change, it's time to commit it:
 
 ```bash
-$ git commit -m "Add basic guacamole's ingredients"
-$ git status
+$ git commit -m "Add ingredients for basic guacamole"
 ```
 
 ```output
 On branch main
 Changes not staged for commit:
   (use "git add <file>..." to update what will be committed)
-  (use "git checkout -- <file>..." to discard changes in working directory)
+  (use "git restore <file>..." to discard changes in working directory)
 
 	modified:   guacamole.md
 
@@ -294,11 +296,11 @@ Let's fix that:
 
 ```bash
 $ git add guacamole.md
-$ git commit -m "Add basic guacamole's ingredients"
+$ git commit -m "Add ingredients for basic guacamole"
 ```
 
 ```output
-[main 34961b1] Add basic guacamole's ingredient
+[main 34961b1] Add ingredients for basic guacamole
  1 file changed, 3 insertions(+)
 ```
 
@@ -357,11 +359,12 @@ $ cat guacamole.md
 ```
 
 ```output
-# Ingredients
-- avocado
-- lime
-- salt
-# Instructions
+# Guacamole
+## Ingredients
+* avocado
+* lime
+* salt
+## Instructions
 ```
 
 ```bash
@@ -373,13 +376,14 @@ diff --git a/guacamole.md b/guacamole.md
 index 315bf3a..b36abfd 100644
 --- a/guacamole.md
 +++ b/guacamole.md
-@@ -1,5 +1,5 @@
- # Ingredients
- - avocado
--- lemon
-+- lime
- - salt
- # Instructions
+@@ -1,6 +1,6 @@
+ # Guacamole
+ ## Ingredients
+ * avocado
+-* lemon
++* lime
+ * salt
+ ## Instructions
 ```
 
 So far, so good:
@@ -409,13 +413,14 @@ diff --git a/guacamole.md b/guacamole.md
 index 315bf3a..b36abfd 100644
 --- a/guacamole.md
 +++ b/guacamole.md
-@@ -1,5 +1,5 @@
- # Ingredients
- - avocado
--- lemon
-+- lime
- - salt
- # Instructions
+@@ -1,6 +1,6 @@
+ # Guacamole
+ ## Ingredients
+ * avocado
+-* lemon
++* lime
+ * salt
+ ## Instructions
 ```
 
 it shows us the difference between
@@ -460,7 +465,7 @@ commit 34961b159c27df3b475cfe4415d94a6d1fcd064d
 Author: Alfredo Linguini <a.linguini@ratatouille.fr>
 Date:   Thu Aug 22 10:07:21 2013 -0400
 
-    Add basic guacamole's ingredients
+    Add ingredients for basic guacamole
 
 commit f22b25e3233b4645dabd0d81e651fe074bd8e73b
 Author: Alfredo Linguini <a.linguini@ratatouille.fr>
@@ -530,7 +535,7 @@ $ git log --oneline
 
 ```output
 005937f (HEAD -> main) Modify guacamole to the traditional recipe
-34961b1 Add basic guacamole's ingredients
+34961b1 Add ingredients for basic guacamole
 f22b25e Create a template for recipe
 ```
 
@@ -546,7 +551,7 @@ $ git log --oneline --graph
 
 ```output
 * 005937f (HEAD -> main) Modify guacamole to the traditional recipe
-* 34961b1 Add basic guacamole's ingredients
+* 34961b1 Add ingredients for basic guacamole
 * f22b25e Create a template for recipe
 ```
 
@@ -571,21 +576,13 @@ Two important facts you should know about directories in Git.
   Note, our newly created empty directory `cakes` does not appear in
   the list of untracked files even if we explicitly add it (*via* `git add`) to our
   repository. This is the reason why you will sometimes see `.gitkeep` files
-  in otherwise empty directories. Unlike `.gitignore`, these files are not special
-  and their sole purpose is to populate a directory so that Git adds it to
-  the repository. In fact, you can name such files anything you like.
+  in otherwise empty directories. The sole purpose of `.gitkeep` files is to populate a directory so that Git adds it to the repository. The name `.gitkeep` is just a convention, and in fact, you can name these files anything you like.
 
 2. If you create a directory in your Git repository and populate it with files,
-  you can add all files in the directory at once by:
+  you can add all the files in the directory at once by referring to the directory in your `git add` command. Try it for yourself:
   
   ```bash
-  git add <directory-with-files>
-  ```
-  
-  Try it for yourself:
-  
-  ```bash
-  $ touch cakes/brownie cakes/lemon_drizzle
+  $ touch cakes/brownie_cakes/lemon_drizzle
   $ git status
   $ git add cakes
   $ git status
@@ -694,10 +691,11 @@ $ cat guacamole.md
 ```
 
 ```output
-# Ingredients
-- avocado (1.35)
-- lime (0.64)
-- salt (2)
+# Guacamole
+## Ingredients
+* avocado (1.35)
+* lime (0.64)
+* salt (2)
 ```
 
 ```bash
@@ -707,9 +705,9 @@ $ cat groceries.md
 
 ```output
 # Market A
-- avocado: 1.35 per unit.
-- lime: 0.64 per unit
-- salt: 2 per kg
+* avocado: 1.35 per unit.
+* lime: 0.64 per unit
+* salt: 2 per kg
 ```
 
 Now you can add both files to the staging area. We can do that in one line:

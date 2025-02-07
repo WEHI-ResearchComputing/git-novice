@@ -80,7 +80,7 @@ GitHub repository a [remote](../learners/reference.md#remote) for the local repo
 The home page of the repository on GitHub includes the URL string we need to
 identify it:
 
-![](fig/github-find-repo-string.png){alt='Clicking the "Copy to Clipboard" button on GitHub to obtain the repository\'s URL'}
+![](fig/github-change-repo-string.png){alt='A screenshot showing that clicking on "SSH" will make GitHub provide the SSH URL for a repository instead of the HTTPS URL'}
 
 Click on the 'SSH' link to change the [protocol](../learners/reference.md#protocol) from HTTPS to SSH.
 
@@ -90,13 +90,12 @@ Click on the 'SSH' link to change the [protocol](../learners/reference.md#protoc
 
 We use SSH here because, while it requires some additional configuration, it is a
 security protocol widely used by many applications.  The steps below describe SSH at a
-minimum level for GitHub. A supplemental episode to this lesson discusses advanced setup
-and concepts of SSH and key pairs, and other material supplemental to git related SSH.
+minimum level for GitHub.
 
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
-![](fig/github-change-repo-string.png){alt='A screenshot showing that clicking on "SSH" will make GitHub provide the SSH URL for a repository instead of the HTTPS URL'}
+![](fig/github-find-repo-string.png){alt='Clicking the "Copy to Clipboard" button on GitHub to obtain the repository\'s URL'}
 
 Copy that URL from the browser, go into the local `recipes` repository, and run
 this command:
@@ -138,15 +137,6 @@ You can think of the public key as a padlock, and only you have the key (the pri
 
 What we will do now is the minimum required to set up the SSH keys and add the public key to a GitHub account.
 
-:::::::::::::::::::::::::::::::::::::::::  callout
-
-## Advanced SSH
-
-A supplemental episode in this lesson discusses SSH and key pairs in more depth and detail.
-
-
-::::::::::::::::::::::::::::::::::::::::::::::::::
-
 The first thing we are going to do is check if this has already been done on the computer you're on.  Because generally speaking, this setup only needs to happen once and then you can forget about it.
 
 :::::::::::::::::::::::::::::::::::::::::  callout
@@ -163,7 +153,7 @@ computers to access your account.
 We will run the list command to check what key pairs already exist on your computer.
 
 ```bash
-ls -al ~/.ssh
+$ ls -al ~/.ssh
 ```
 
 Your output is going to look a little different depending on whether or not SSH has ever been set up on the computer you are using.
@@ -179,7 +169,7 @@ Since they don't exist on Alfredo's computer, he uses this command to create the
 
 ### 3\.1 Create an SSH key pair
 
-To create an SSH key pair Vlad uses this command, where the `-t` option specifies which type of algorithm to use and `-C` attaches a comment to the key (here, Vlad's email):
+To create an SSH key pair Alfredo uses this command, where the `-t` option specifies which type of algorithm to use and `-C` attaches a comment to the key (here, Alfredo's email):
 
 ```bash
 $ ssh-keygen -t ed25519 -C "a.linguini@ratatouille.fr"
@@ -200,7 +190,9 @@ Created directory '/c/Users/Alfredo/.ssh'.
 Enter passphrase (empty for no passphrase):
 ```
 
-Now, it is prompting Alfredo for a passphrase.  Since he is using his kitchen's laptop that other people sometimes have access to, he wants to create a passphrase.  Be sure to use something memorable or save your passphrase somewhere, as there is no "reset my password" option.
+Now, it is prompting Alfredo for a passphrase. Since he is using his kitchen's laptop that other people sometimes have access to, he wants to create a passphrase. Be sure to use something memorable or save your passphrase somewhere, as there is no "reset my password" option.
+Note that, when typing a passphrase on a terminal, there won't be any visual feedback of your typing.
+This is normal: your passphrase will be recorded even if you see nothing changing on your screen.
 
 ```output
 Enter same passphrase again:
@@ -273,8 +265,8 @@ cat ~/.ssh/id_ed25519.pub
 ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDmRA3d51X0uu9wXek559gfn6UFNF69yZjChyBIU2qKI a.linguini@ratatouille.fr
 ```
 
-Now, going to GitHub.com, click on your profile icon in the top right corner to get the drop-down menu.  Click "Settings," then on the
-settings page, click "SSH and GPG keys," on the left side "Account settings" menu.  Click the "New SSH key" button on the right side. Now,
+Now, going to GitHub.com, click on your profile icon in the top right corner to get the drop-down menu.  Click "Settings", then on the
+settings page, click "SSH and GPG keys", on the left side "Access" menu. Click the "New SSH key" button on the right side. Now,
 you can add the title (Alfredo uses the title "Alfredo's Kitchen Laptop" so he can remember where the original key pair
 files are located), paste your SSH key into the field, and click the "Add SSH key" to complete the setup.
 

@@ -33,11 +33,12 @@ $ cat guacamole.md
 ```
 
 ```output
-# Ingredients
-- avocado
-- lime
-- salt
-# Instructions
+# Guacamole
+## Ingredients
+* avocado
+* lime
+* salt
+## Instructions
 ```
 
 Let's add a line to the collaborator's copy only:
@@ -48,12 +49,13 @@ $ cat guacamole.md
 ```
 
 ```output
-# Ingredients
-- avocado
-- lime
-- salt
-# Instructions
-- put one avocado into a bowl.
+# Guacamole
+## Ingredients
+* avocado
+* lime
+* salt
+## Instructions
+* put one avocado into a bowl.
 ```
 
 and then push the change to GitHub:
@@ -94,12 +96,13 @@ $ cat guacamole.md
 ```
 
 ```output
-# Ingredients
-- avocado
-- lime
-- salt
-# Instructions
-- peel the avocados
+# Guacamole
+## Ingredients
+* avocado
+* lime
+* salt
+## Instructions
+* peel the avocados
 ```
 
 We can commit the change locally:
@@ -159,9 +162,9 @@ Automatic merge failed; fix conflicts and then commit the result.
 
 :::::::::::::::::::::::::::::::::::::::::  callout
 
-## You may need to tell git what to do
+## You may need to tell Git what to do
 
-If you see the below in your output, git is asking what it should do.
+If you see the below in your output, Git is asking what it should do.
 
 ```output
 hint: You have divergent branches and need to specify how to reconcile them.
@@ -178,7 +181,7 @@ hint: or --ff-only on the command line to override the configured default per
 hint: invocation.
 ```
 
-In newer versions of git it gives you the option of specifying different
+In newer versions of Git it gives you the option of specifying different
 behaviours when a pull would merge divergent branches. In our case we want
 'the default strategy'. To use this strategy run the following command to
 select it as the default thing git should do.
@@ -207,15 +210,16 @@ $ cat guacamole.md
 ```
 
 ```output
-# Ingredients
-- avocado
-- lime
-- salt
-# Instructions
+# Guacamole
+## Ingredients
+* avocado
+* lime
+* salt
+## Instructions
 <<<<<<< HEAD
-- peel the avocados
+* peel the avocados
 =======
-- put one avocado into a bowl.
+* put one avocado into a bowl.
 >>>>>>> dabb4c8c450e8475aee9b14b4383acc99f42af1d
 ```
 
@@ -237,12 +241,13 @@ $ cat guacamole.md
 ```
 
 ```output
-# Ingredients
-- avocado
-- lime
-- salt
-# Instructions
-- peel the avocados and put them into a bowl.
+# Guacamole
+## Ingredients
+* avocado
+* lime
+* salt
+## Instructions
+* peel the avocados and put them into a bowl.
 ```
 
 To finish merging,
@@ -321,12 +326,13 @@ $ cat guacamole.md
 ```
 
 ```output
-# Ingredients
-- avocado
-- lime
-- salt
-# Instructions
-- peel the avocados and put them into a bowl.
+# Guacamole
+## Ingredients
+* avocado
+* lime
+* salt
+## Instructions
+* peel the avocados and put them into a bowl.
 ```
 
 We don't need to merge again because Git knows someone has already done that.
